@@ -347,13 +347,13 @@ export default function App() {
       {/* Hero Section */}
       <section
         id="hero"
-        className="relative min-h-[75vh] sm:min-h-[82vh] lg:min-h-[88vh] flex flex-col justify-center items-center text-center px-4 sm:px-8 pt-24 pb-12 sm:pt-28 sm:pb-16 overflow-hidden bg-black"
+        className="relative min-h-[82vh] lg:min-h-[88vh] flex flex-col justify-center items-center text-center px-4 sm:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 overflow-hidden bg-black"
       >
         {/* Deep space radial background glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900/40 via-black to-black pointer-events-none"></div>
 
         <div className="z-10 max-w-5xl mx-auto flex flex-col items-center w-full my-auto">
-          <div className="mb-4 sm:mb-5 px-3.5 sm:px-4 py-1 border border-white/20 rounded-full text-[10px] sm:text-xs text-gray-300 font-mono tracking-widest uppercase bg-black/60 backdrop-blur">
+          <div className="mb-4 sm:mb-5 px-3.5 sm:px-4 py-1.5 border border-white/20 rounded-full text-[10px] sm:text-xs text-gray-300 font-mono tracking-widest uppercase bg-black/60 backdrop-blur">
             Kangaroo Space Exploration &amp; Development Coalition
           </div>
 
@@ -376,77 +376,98 @@ export default function App() {
           </div>
         </div>
 
-        <div className="mt-6 sm:mt-8 pt-2 flex flex-col items-center text-gray-500 text-[10px] sm:text-xs font-mono tracking-widest uppercase animate-bounce">
+        <div className="mt-8 sm:mt-10 pt-2 flex flex-col items-center text-gray-500 text-[10px] sm:text-xs font-mono tracking-widest uppercase animate-bounce">
           <span>SCROLL</span>
-          <i className="fas fa-chevron-down mt-1 text-[9px]"></i>
+          <i className="fas fa-chevron-down mt-1.5 text-[9px]"></i>
         </div>
       </section>
 
-      {/* 5 Fullscreen / Full-Bleed SpaceX Style Planet Sections */}
-      {MISSIONS.map((mission) => (
-        <section
-          key={mission.id}
-          id={mission.id}
-          className="relative flex items-center bg-black overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 px-5 sm:px-10 md:px-16 lg:px-24 border-b border-white/5 min-h-[460px] sm:min-h-[520px] lg:min-h-[640px]"
-        >
-          {/* Giant Planet Image with Fully Responsive Scaling & Masking */}
-          <div className="absolute right-[-18%] sm:right-[-12%] md:right-[-6%] lg:right-[0%] top-1/2 -translate-y-1/2 w-[88vw] sm:w-[70vw] md:w-[58vw] lg:w-[52vw] max-w-[900px] aspect-square pointer-events-none z-0 flex items-center justify-center opacity-40 sm:opacity-75 md:opacity-95 transition-opacity">
-            <div className="planet-faded-wrapper">
-              <img
-                src={mission.image}
-                alt={mission.imageAlt}
-                referrerPolicy="no-referrer"
-                className="planet-faded-image"
-              />
-              {/* Seamless feathering gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent w-2/5 left-0"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black h-full"></div>
-            </div>
-          </div>
+      {/* 5 Alternating SpaceX Style Planet Sections */}
+      {MISSIONS.map((mission, index) => {
+        const isEven = index % 2 === 0; // Even: Image Right, Text Left. Odd: Image Left, Text Right.
 
-          {/* Left-Aligned Clean SpaceX Content (Responsive typography & spacing) */}
-          <div className="relative z-10 max-w-xl lg:max-w-2xl reveal w-full">
-            {/* Tag / Category */}
-            <div className="text-[11px] sm:text-xs font-mono text-orange-400 sm:text-gray-400 tracking-widest uppercase mb-2 sm:mb-3">
-              {mission.tag}
-            </div>
-
-            {/* Massive Bold Stacked Title */}
-            <h2 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-tight text-white leading-[0.95] sm:leading-[0.92] mb-3 sm:mb-5 break-words">
-              {mission.lines.map((line, idx) => (
-                <React.Fragment key={idx}>
-                  {line}
-                  {idx < mission.lines.length - 1 && <br />}
-                </React.Fragment>
-              ))}
-            </h2>
-
-            {/* Subtext Paragraph */}
-            <p className="text-gray-200 sm:text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 max-w-lg font-normal">
-              {mission.description}
-            </p>
-
-            {/* Quick Specs / Monospace Tag */}
-            <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 mb-6 sm:mb-8 font-mono text-[11px] sm:text-xs text-gray-300 sm:text-gray-400">
-              {mission.specs.slice(0, 2).map((s, idx) => (
-                <div key={idx} className="flex items-center gap-2 bg-black/50 sm:bg-transparent px-2 sm:px-0 py-1 sm:py-0 border sm:border-0 border-white/10 rounded-sm">
-                  <span className="w-1.5 h-1.5 bg-orange-500 rounded-full shrink-0"></span>
-                  <span className="text-gray-400">{s.label}:</span>
-                  <span className="text-white font-medium">{s.value}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Minimalist SpaceX Button */}
-            <button
-              onClick={() => setActiveModalMission(mission)}
-              className="btn-spacex w-full sm:w-auto text-center"
+        return (
+          <section
+            key={mission.id}
+            id={mission.id}
+            className="relative flex items-center bg-black overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28 px-5 sm:px-10 md:px-16 lg:px-24 border-b border-white/5 min-h-[520px] sm:min-h-[580px] lg:min-h-[700px]"
+          >
+            {/* Giant Planet Image with Fully Responsive Scaling & Alternating Left/Right Position */}
+            <div
+              className={`absolute ${
+                isEven
+                  ? 'right-[-18%] sm:right-[-12%] md:right-[-6%] lg:right-[0%]'
+                  : 'left-[-18%] sm:left-[-12%] md:left-[-6%] lg:left-[0%]'
+              } top-1/2 -translate-y-1/2 w-[88vw] sm:w-[70vw] md:w-[58vw] lg:w-[52vw] max-w-[900px] aspect-square pointer-events-none z-0 flex items-center justify-center opacity-40 sm:opacity-75 md:opacity-95 transition-opacity`}
             >
-              {mission.buttonText} <i className="fas fa-arrow-right text-xs ml-1"></i>
-            </button>
-          </div>
-        </section>
-      ))}
+              <div className={isEven ? 'planet-faded-wrapper-right' : 'planet-faded-wrapper-left'}>
+                <img
+                  src={mission.image}
+                  alt={mission.imageAlt}
+                  referrerPolicy="no-referrer"
+                  className="planet-faded-image"
+                />
+                {/* Seamless feathering gradient */}
+                {isEven ? (
+                  <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent w-2/5 left-0"></div>
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-l from-black via-black/40 to-transparent w-2/5 right-0"></div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black h-full"></div>
+              </div>
+            </div>
+
+            {/* Alternating Clean SpaceX Content (Left on even, Right on odd) */}
+            <div
+              className={`relative z-10 max-w-xl lg:max-w-2xl reveal w-full ${
+                isEven ? 'mr-auto' : 'ml-auto'
+              }`}
+            >
+              {/* Tag / Category */}
+              <div className="text-[11px] sm:text-xs font-mono text-orange-400 sm:text-gray-400 tracking-widest uppercase mb-2 sm:mb-3">
+                {mission.tag}
+              </div>
+
+              {/* Massive Bold Stacked Title */}
+              <h2 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase tracking-tight text-white leading-[0.95] sm:leading-[0.92] mb-3 sm:mb-5 break-words">
+                {mission.lines.map((line, idx) => (
+                  <React.Fragment key={idx}>
+                    {line}
+                    {idx < mission.lines.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </h2>
+
+              {/* Subtext Paragraph */}
+              <p className="text-gray-200 sm:text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 max-w-lg font-normal">
+                {mission.description}
+              </p>
+
+              {/* Quick Specs / Monospace Tag */}
+              <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 mb-6 sm:mb-8 font-mono text-[11px] sm:text-xs text-gray-300 sm:text-gray-400">
+                {mission.specs.slice(0, 2).map((s, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2 bg-black/50 sm:bg-transparent px-2 sm:px-0 py-1 sm:py-0 border sm:border-0 border-white/10 rounded-sm"
+                  >
+                    <span className="w-1.5 h-1.5 bg-orange-500 rounded-full shrink-0"></span>
+                    <span className="text-gray-400">{s.label}:</span>
+                    <span className="text-white font-medium">{s.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Minimalist SpaceX Button */}
+              <button
+                onClick={() => setActiveModalMission(mission)}
+                className="btn-spacex w-full sm:w-auto text-center"
+              >
+                {mission.buttonText} <i className="fas fa-arrow-right text-xs ml-1"></i>
+              </button>
+            </div>
+          </section>
+        );
+      })}
 
       {/* Mission Detail Modal (Fully Responsive for Phones & Tablets) */}
       {activeModalMission && (

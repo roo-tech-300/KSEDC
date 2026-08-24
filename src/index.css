@@ -153,8 +153,9 @@ nav.scrolled {
     transform: scale(1.04);
 }
 
-/* SpaceX Planet Edge Fade into Void */
-.planet-faded-wrapper {
+/* SpaceX Planet Edge Fade into Void (Right & Left Aligned) */
+.planet-faded-wrapper,
+.planet-faded-wrapper-right {
     position: relative;
     width: 100%;
     height: 100%;
@@ -166,8 +167,21 @@ nav.scrolled {
     -webkit-mask-image: radial-gradient(circle at 55% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 0) 75%);
 }
 
+.planet-faded-wrapper-left {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    mask-image: radial-gradient(circle at 45% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 0) 75%);
+    -webkit-mask-image: radial-gradient(circle at 45% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 0) 75%);
+}
+
 @media (max-width: 768px) {
-    .planet-faded-wrapper {
+    .planet-faded-wrapper,
+    .planet-faded-wrapper-right,
+    .planet-faded-wrapper-left {
         mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
         -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
     }
