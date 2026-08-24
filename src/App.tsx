@@ -655,7 +655,7 @@ export default function App() {
             <div className="team-card bg-neutral-950 border border-white/10 rounded-none overflow-hidden group">
               <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4]">
                 <img
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop"
+                  src="assets/CEO.png"
                   alt="Gabriel Godwin"
                   referrerPolicy="no-referrer"
                   className="team-img"
@@ -670,7 +670,7 @@ export default function App() {
             <div className="team-card bg-neutral-950 border border-white/10 rounded-none overflow-hidden group">
               <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4]">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+                  src="assets/COO.png"
                   alt="Emmanel John"
                   referrerPolicy="no-referrer"
                   className="team-img"
@@ -685,7 +685,7 @@ export default function App() {
             <div className="team-card bg-neutral-950 border border-white/10 rounded-none overflow-hidden group sm:col-span-2 lg:col-span-1 max-w-md sm:max-w-none mx-auto w-full">
               <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4]">
                 <img
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f84?q=80&w=1000&auto=format&fit=crop"
+                  src="assets/CTO.jpg"
                   alt="Eluzia Ameh-Ako"
                   referrerPolicy="no-referrer"
                   className="team-img"
