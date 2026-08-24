@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+:root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --muted: #8a8a8a;
+    --accent: #ff5e00; /* Mars/Plasma Orange */
+    --accent-2: #00e5ff; /* Electric Cyan */
+    --card: #080808;
+    --border: #141414;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: #000000;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, .font-display {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+::-webkit-scrollbar-thumb {
+    background: #222222;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+/* SpaceX Button Style */
+.btn-spacex {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: transparent;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.btn-spacex:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.btn-spacex-accent {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-spacex-accent:hover {
+    background: var(--accent);
+    color: #000000;
+    border-color: var(--accent);
+}
+
+/* Section Divider */
+.section-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+}
+
+/* Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Progress Bar */
+.progress-bar-bg {
+    width: 100%;
+    height: 3px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #ffffff;
+    width: 0;
+    transition: width 1.5s ease-out;
+}
+
+/* Navbar */
+nav {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+nav.scrolled {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Team Member Images */
+.team-img-wrapper {
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter 0.5s ease, transform 0.6s ease;
+}
+
+.team-card:hover .team-img {
+    filter: grayscale(0%) contrast(1.1);
+    transform: scale(1.04);
+}
+
+/* SpaceX Planet Edge Fade into Void */
+.planet-faded-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Soft radial gradient masking to dissolve boundaries into pure black */
+    mask-image: radial-gradient(circle at 55% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 0) 75%);
+    -webkit-mask-image: radial-gradient(circle at 55% 50%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 0) 75%);
+}
+
+@media (max-width: 768px) {
+    .planet-faded-wrapper {
+        mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
+        -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
+    }
+}
+
+.planet-faded-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: contrast(1.05) brightness(0.95);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+

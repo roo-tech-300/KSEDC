@@ -1,0 +1,6 @@
+{
+  "name": "KSEDC — Kangaroo Space Exploration",
+  "description": "Next-generation aerospace exploration portal featuring photorealistic 3D planetary rendering, interactive mission architectures, and interplanetary engineering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
