@@ -7,6 +7,7 @@ import saturnImg from './assets/images/saturn_ringway_1787608089550.jpg';
 import ceoImg from './assets/team/CEO.png';
 import cooImg from './assets/team/COO.png';
 import ctoImg from './assets/team/CTO.jpeg';
+import { JovianPage } from './components/JovianPage';
 
 interface MissionData {
   id: string;
@@ -170,12 +171,24 @@ const MISSIONS: MissionData[] = [
 ];
 
 export default function App() {
+  const [currentView, setCurrentView] = useState<'home' | 'jovian'>('home');
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [activeModalMission, setActiveModalMission] = useState<MissionData | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#jovian-engine' || window.location.hash === '#jovian-page') {
+        setCurrentView('jovian');
+      } else if (window.location.hash === '#home' || window.location.hash === '') {
+        setCurrentView('home');
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+
     // Navbar Scroll Effect
     const handleScroll = () => {
       const nav = document.querySelector('nav');
@@ -224,11 +237,33 @@ export default function App() {
     progressBars.forEach((bar) => progressObserver.observe(bar));
 
     return () => {
+      window.removeEventListener('hashchange', handleHashChange);
       window.removeEventListener('scroll', handleScroll);
       revealObserver.disconnect();
       progressObserver.disconnect();
     };
   }, []);
+
+  const navigateTo = (view: 'home' | 'jovian', hash = '') => {
+    setCurrentView(view);
+    window.location.hash = hash || (view === 'jovian' ? '#jovian-engine' : '#home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
+
+  if (currentView === 'jovian') {
+    return (
+      <JovianPage
+        onBackToHome={() => navigateTo('home')}
+        onJoinCoalition={() => {
+          navigateTo('home', '#join');
+          setTimeout(() => {
+            document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+        }}
+      />
+    );
+  }
 
   // Close mobile menu on hash click or escape
   const handleNavClick = () => {
@@ -461,12 +496,31 @@ export default function App() {
               </div>
 
               {/* Minimalist SpaceX Button */}
-              <button
-                onClick={() => setActiveModalMission(mission)}
-                className="btn-spacex w-full sm:w-auto text-center"
-              >
-                {mission.buttonText} <i className="fas fa-arrow-right text-xs ml-1"></i>
-              </button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                {mission.id === 'jovian' ? (
+                  <button
+                    onClick={() => navigateTo('jovian')}
+                    className="btn-spacex btn-spacex-accent w-full sm:w-auto text-center"
+                  >
+                    EXPLORE THE ENGINE <i className="fas fa-arrow-right text-xs ml-1"></i>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setActiveModalMission(mission)}
+                    className="btn-spacex w-full sm:w-auto text-center"
+                  >
+                    {mission.buttonText} <i className="fas fa-arrow-right text-xs ml-1"></i>
+                  </button>
+                )}
+                {mission.id === 'jovian' && (
+                  <button
+                    onClick={() => setActiveModalMission(mission)}
+                    className="btn-spacex w-full sm:w-auto text-center text-gray-400"
+                  >
+                    QUICK TELEMETRY
+                  </button>
+                )}
+              </div>
             </div>
           </section>
         );
@@ -549,7 +603,18 @@ export default function App() {
               {activeModalMission.disclaimer}
             </div>
 
-            <div className="mt-6 sm:mt-8 flex justify-end">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-end gap-3">
+              {activeModalMission.id === 'jovian' && (
+                <button
+                  onClick={() => {
+                    setActiveModalMission(null);
+                    navigateTo('jovian');
+                  }}
+                  className="btn-spacex btn-spacex-accent py-2.5 px-6 text-xs w-full sm:w-auto text-center"
+                >
+                  OPEN FULL SPECIFICATION PAGE <i className="fas fa-arrow-right text-xs ml-1"></i>
+                </button>
+              )}
               <button
                 onClick={() => setActiveModalMission(null)}
                 className="btn-spacex py-2.5 px-6 text-xs w-full sm:w-auto text-center"
