@@ -4,6 +4,9 @@ import marsImg from './assets/images/mars_planet_1787608050777.jpg';
 import moonImg from './assets/images/moon_lunar_1787608063566.jpg';
 import europaImg from './assets/images/europa_ice_1787608075865.jpg';
 import saturnImg from './assets/images/saturn_ringway_1787608089550.jpg';
+import ceoImg from './assets/team/CEO.png';
+import cooImg from './assets/team/COO.png';
+import ctoImg from './assets/team/CTO.jpeg';
 
 interface MissionData {
   id: string;
@@ -653,12 +656,12 @@ export default function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="team-card bg-neutral-950 border border-white/10 rounded-none overflow-hidden group">
-              <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4]">
+              <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4] bg-neutral-900">
                 <img
-                  src="assets/CEO.png"
+                  src={ceoImg}
                   alt="Gabriel Godwin"
                   referrerPolicy="no-referrer"
-                  className="team-img"
+                  className="team-img object-cover object-top w-full h-full"
                 />
               </div>
               <div className="p-5 sm:p-6">
@@ -668,12 +671,12 @@ export default function App() {
             </div>
 
             <div className="team-card bg-neutral-950 border border-white/10 rounded-none overflow-hidden group">
-              <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4]">
+              <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4] bg-neutral-900">
                 <img
-                  src="assets/COO.png"
+                  src={cooImg}
                   alt="Emmanel John"
                   referrerPolicy="no-referrer"
-                  className="team-img"
+                  className="team-img object-cover object-top w-full h-full"
                 />
               </div>
               <div className="p-5 sm:p-6">
@@ -683,12 +686,12 @@ export default function App() {
             </div>
 
             <div className="team-card bg-neutral-950 border border-white/10 rounded-none overflow-hidden group sm:col-span-2 lg:col-span-1 max-w-md sm:max-w-none mx-auto w-full">
-              <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4]">
+              <div className="team-img-wrapper aspect-[4/5] sm:aspect-[3/4] bg-neutral-900">
                 <img
-                  src="assets/CTO.jpg"
+                  src={ctoImg}
                   alt="Eluzia Ameh-Ako"
                   referrerPolicy="no-referrer"
-                  className="team-img"
+                  className="team-img object-cover object-top w-full h-full"
                 />
               </div>
               <div className="p-5 sm:p-6">
