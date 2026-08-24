@@ -176,6 +176,7 @@ export default function App() {
   const [subscribed, setSubscribed] = useState(false);
   const [activeModalMission, setActiveModalMission] = useState<MissionData | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [disclaimerModalOpen, setDisclaimerModalOpen] = useState(true);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -525,6 +526,48 @@ export default function App() {
           </section>
         );
       })}
+
+      {/* Company Fictional Disclaimer Modal */}
+      {disclaimerModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-fadeIn">
+          <div className="relative w-full max-w-lg bg-black border border-white/20 p-6 sm:p-8 shadow-2xl">
+            <button
+              onClick={() => setDisclaimerModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white font-mono text-xs transition"
+              aria-label="Close disclaimer"
+            >
+              [ CLOSE ✕ ]
+            </button>
+
+            <div className="flex items-center gap-2 text-xs font-mono text-orange-500 uppercase tracking-widest mb-3">
+              <span className="w-2 h-2 bg-orange-500 rounded-full animate-ping"></span>
+              PUBLIC NOTICE // FICTIONAL ENTITY
+            </div>
+
+            <h3 className="font-display text-2xl sm:text-3xl font-black uppercase text-white tracking-tight mb-4">
+              KSEDC ADVISORY
+            </h3>
+
+            <div className="bg-neutral-950 border border-white/10 p-4 sm:p-5 mb-6 text-sm text-gray-300 font-sans leading-relaxed">
+              <p className="font-medium text-white mb-2">
+                This company is fictional, and as much as the founders look forward to working on something like this, they haven't started.
+              </p>
+              <p className="text-xs text-gray-400 font-mono">
+                All projects, telemetry data, planetary colonization concepts, and mission architectures shown across this portal are creative speculative designs and do not represent active commercial operations.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-end gap-3">
+              <button
+                onClick={() => setDisclaimerModalOpen(false)}
+                className="btn-spacex btn-spacex-accent w-full text-center py-3 text-xs"
+              >
+                ENTER KSEDC PORTAL <i className="fas fa-arrow-right text-xs ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Mission Detail Modal (Fully Responsive for Phones & Tablets) */}
       {activeModalMission && (

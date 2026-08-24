@@ -102,6 +102,15 @@ export const JovianPage: React.FC<JovianPageProps> = ({ onBackToHome, onJoinCoal
 
         {/* Content */}
         <div className="relative z-10 max-w-2xl w-full">
+          {/* Fictional Product Disclaimer Banner */}
+          <div className="mb-5 p-3.5 sm:p-4 bg-orange-950/40 border border-orange-500/40 text-orange-200 font-mono text-xs leading-relaxed flex items-start gap-3">
+            <span className="text-orange-400 font-bold text-sm shrink-0">⚠</span>
+            <div>
+              <span className="text-white font-bold uppercase tracking-wider block mb-0.5">FICTIONAL CONCEPT NOTICE</span>
+              Fictional product, as much as we will want to work on something like this, it is fictional and absolutely doesn't exist.
+            </div>
+          </div>
+
           <div className="text-[11px] sm:text-xs font-mono text-orange-400 tracking-widest uppercase mb-3">
             KSEDC SPECIAL ARCHITECTURE // 01
           </div>
